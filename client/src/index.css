@@ -1,0 +1,16 @@
+@import './ui-kit/colors.css';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--color-background-primary);
+}
+
+:global(#root) {
+  height: 100vh;
+}
