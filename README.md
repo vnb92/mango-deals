@@ -1,2 +1,2 @@
 # mango-deals
-Mango Deals App. PWA built with React, TypeScript, and Canvas stack.
+Mango Deals App. PWA built with React, TypeScript, Canvas and Express stack.
