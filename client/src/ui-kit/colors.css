@@ -1,5 +1,11 @@
 :root {
+  /* background */
   --color-background-primary: #282F39;
   --color-background-secondary: #7B87A3;
+
+  /* text */
+  --color-text-primary: #FFFFFF;
+
+  /* gradient */
   --gradient-primary: linear-gradient(180deg, #1F252F 0%, #27303E 100%);
 }

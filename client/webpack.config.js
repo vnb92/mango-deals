@@ -11,7 +11,7 @@ module.exports = env => {
   return ({
     mode: env.mode,
     resolve: {
-      extensions: ['.js', '.ts', '.tsx', '.css'],
+      extensions: ['.js', '.ts', '.tsx', '.css', '.svg'],
       alias: {
         '@': path.resolve(__dirname, 'src')
     }
@@ -58,6 +58,23 @@ module.exports = env => {
             }
           ],
         },
+        {
+          test: /\.svg$/,
+          use: [
+            {
+              loader: "babel-loader",
+              options: {
+                presets: ['@babel/preset-react']
+              }
+            },
+            {
+              loader: "react-svg-loader",
+              options: {
+                jsx: true
+              }
+            }
+          ]
+        }
       ]
     },
     plugins: [
