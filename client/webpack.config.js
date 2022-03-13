@@ -12,6 +12,9 @@ module.exports = env => {
     mode: env.mode,
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.css'],
+      alias: {
+        '@': path.resolve(__dirname, 'src')
+    }
     },
     entry: {
       index: './src/index.tsx',
