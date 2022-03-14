@@ -55,6 +55,19 @@ module.exports = env => {
                   localIdentName: '[name]-[local]-[hash:base64:5]'
                 },
               },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    'postcss-import',
+                    'postcss-custom-media',
+                    'postcss-nested',
+                    'postcss-custom-properties',
+                  ]
+                }
+              }
             }
           ],
         },

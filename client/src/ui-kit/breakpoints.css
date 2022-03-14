@@ -1,0 +1,9 @@
+/*
+  Must be sync with ./breakpoints.ts.
+*/
+@custom-media --breakpoint-xs (min-width: 320px);
+@custom-media --breakpoint-s (min-width: 375px);
+@custom-media --breakpoint-m (min-width: 768px);
+@custom-media --breakpoint-l (min-width: 1024px);
+@custom-media --breakpoint-xl (min-width: 1320px);
+@custom-media --breakpoint-xxl (min-width: 1720px);

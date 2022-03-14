@@ -4,5 +4,5 @@
  */
 export const i18n = {
   appTitle: 'Mango Deals',
-  newDeal: 'new deal'
+  newDeal: 'New Deal'
 }

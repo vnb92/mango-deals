@@ -1,10 +1,17 @@
+@import '../../ui-kit/breakpoints.css';
+
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0 40px;
-  background: var(--gradient-primary);
+  padding: 0 20px;
+  background: var(--gradient-background);
+
+  @media (--breakpoint-m) {
+    padding: 0 40px;
+  }
 }
 
 .logo {
@@ -12,7 +19,11 @@
   align-items: center;
   font-family: var(--font-heading);
   color: var(--color-text-primary);
-  font-size: 24px;
+  font-size: 20px;
+
+  @media (--breakpoint-s) {
+    font-size: 24px;
+  }
 }
 
 .title {
