@@ -1,5 +1,6 @@
 @import './ui-kit/colors.css';
 @import './ui-kit/fonts.css';
+@import './ui-kit/constants.css';
 
 * {
   padding: 0;

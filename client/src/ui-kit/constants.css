@@ -1,0 +1,9 @@
+@import './breakpoints.css';
+
+:root {
+  --edge-spacing: 20px;
+
+  @media (--breakpoint-m) {
+    --edge-spacing: 40px;
+  }
+}

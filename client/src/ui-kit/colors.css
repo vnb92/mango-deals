@@ -2,13 +2,17 @@
   /* border */
   --color-border-19: rgba(0, 170, 224, 0.19);
   --color-border-30: rgba(0, 170, 224, 0.30);
+  --color-border-dark: #343E4D;
 
   /* background */
   --color-background-primary: #282F39;
   --color-background-secondary: #7B87A3;
+  --color-background-light: rgba(255, 255, 255, 0.02);
+  --color-background-accent: rgba(133, 211, 255, 0.09);
 
   /* text */
   --color-text-primary: #FFFFFF;
+  --color-text-secondary: #CAD3E8;
 
   /* gradient */
   --gradient-background: linear-gradient(180deg, #1F252F 0%, #27303E 100%);

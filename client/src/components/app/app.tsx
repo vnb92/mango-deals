@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import { Header } from '@/components/header'
 import { Chart } from '@/components/chart'
-import { DealList } from '@/components/deal-list'
+import { Deals } from '@/components/deals'
 import { ViewportProvider } from '@/context/viewport-context'
 import styles from './app.css'
 
@@ -18,7 +18,7 @@ export const App: FC = () => {
         </section>
 
         <section className={styles.deals}>
-          <DealList />
+          <Deals />
         </section>
       </main>
     </ViewportProvider>

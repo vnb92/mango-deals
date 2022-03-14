@@ -1,0 +1,21 @@
+.dateCell {
+  font-weight: 400;
+}
+
+.body {
+  .row {
+    &:hover {
+      .action {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.action {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: transform 300ms ease-out;
+}

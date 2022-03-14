@@ -10,10 +10,6 @@
   height: 60px;
 }
 
-.chart {
-  flex-grow: 1; 
-}
-
 .deals {
   flex-grow: 3;
 }
