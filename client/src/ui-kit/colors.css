@@ -1,4 +1,8 @@
 :root {
+  /* border */
+  --color-border-19: rgba(0, 170, 224, 0.19);
+  --color-border-30: rgba(0, 170, 224, 0.30);
+
   /* background */
   --color-background-primary: #282F39;
   --color-background-secondary: #7B87A3;
