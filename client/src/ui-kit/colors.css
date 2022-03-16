@@ -3,6 +3,9 @@
   --color-border-19: rgba(0, 170, 224, 0.19);
   --color-border-30: rgba(0, 170, 224, 0.30);
   --color-border-dark: #343E4D;
+  --color-border-input: #3C4251;
+  --color-border-input-focus: #00A3FF;
+  --color-border-accent: rgba(0, 163, 255, 0.1);
 
   /* background */
   --color-background-primary: #282F39;
@@ -12,10 +15,12 @@
   --color-background-modal: rgba(0, 0, 0, 0.25);
   --color-background-modal-fallback: rgba(0, 0, 0, 0.85);
   --color-background-modal-content: rgba(255, 255, 255, 0.12);
+  --color-backgound-input: rgba(44, 51, 61, 0.5);
 
   /* text */
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #CAD3E8;
+  --color-text-secondary-dark: #9AA5BE;
 
   /* gradient */
   --gradient-background: linear-gradient(180deg, #1F252F 0%, #27303E 100%);
