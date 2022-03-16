@@ -1,0 +1,34 @@
+@import '../../ui-kit/breakpoints.css';
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background-modal);
+  backdrop-filter: blur(40px);
+
+  @supports not (backdrop-filter: blur(40px)) {
+    background-color: var(--color-background-modal-fallback);
+  }}
+
+.content {
+  --spacing: 20px;
+
+  position: absolute;
+  bottom: var(--spacing);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - var(--spacing)*2);
+  max-width: 500px;
+  height: 100%;
+  max-height: 430px;
+  background-color: var(--color-background-modal-content);
+  box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+
+  @media (--breakpoint-m) {
+    transform: translate(-50%, -50%);
+  }
+}

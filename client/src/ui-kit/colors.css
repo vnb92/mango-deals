@@ -9,6 +9,9 @@
   --color-background-secondary: #7B87A3;
   --color-background-light: rgba(255, 255, 255, 0.02);
   --color-background-accent: rgba(133, 211, 255, 0.09);
+  --color-background-modal: rgba(0, 0, 0, 0.25);
+  --color-background-modal-fallback: rgba(0, 0, 0, 0.85);
+  --color-background-modal-content: rgba(255, 255, 255, 0.12);
 
   /* text */
   --color-text-primary: #FFFFFF;
