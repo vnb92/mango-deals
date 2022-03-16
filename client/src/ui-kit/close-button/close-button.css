@@ -1,0 +1,12 @@
+.button {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  transition: color 200ms;
+  color: var(--color-button-secondary);
+
+  &:hover {
+    color: var(--color-button-secondary-hover);
+  }
+}

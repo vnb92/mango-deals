@@ -20,4 +20,8 @@
   /* gradient */
   --gradient-background: linear-gradient(180deg, #1F252F 0%, #27303E 100%);
   --gradient-primary: linear-gradient(180deg, #3E9FFF 0%, #00AAE0 100%);
+
+  /* button */
+  --color-button-secondary: #9AA5BE;
+  --color-button-secondary-hover: rgba(255, 255, 255, 0.8);
 }
