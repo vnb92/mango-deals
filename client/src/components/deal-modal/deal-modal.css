@@ -1,0 +1,12 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto 0;
+}
