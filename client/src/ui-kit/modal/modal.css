@@ -8,10 +8,14 @@
   height: 100%;
   background-color: var(--color-background-modal);
   backdrop-filter: blur(40px);
+  font-family: var(--font-primary);
+  font-size: 24px;
+  color: var(--color-text-primary);
 
   @supports not (backdrop-filter: blur(40px)) {
     background-color: var(--color-background-modal-fallback);
-  }}
+  }
+}
 
 .content {
   --spacing: 20px;
@@ -24,6 +28,7 @@
   max-width: 500px;
   height: 100%;
   max-height: 430px;
+  padding: 20px 30px;
   background-color: var(--color-background-modal-content);
   box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
@@ -31,4 +36,10 @@
   @media (--breakpoint-m) {
     transform: translate(-50%, -50%);
   }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
