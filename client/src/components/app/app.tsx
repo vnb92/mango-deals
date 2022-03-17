@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import { Header } from '@/components/header'
 import { Chart } from '@/components/chart'
 import { Deals } from '@/components/deals'
+import { DealModal } from '@/components/deal-modal'
 import { ViewportProvider } from '@/context/viewport-context'
 import styles from './app.css'
 
@@ -21,6 +22,7 @@ export const App: FC = () => {
           <Deals />
         </section>
       </main>
+      <DealModal />
     </ViewportProvider>
   );
 }

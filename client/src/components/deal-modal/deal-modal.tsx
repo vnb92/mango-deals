@@ -1,40 +1,38 @@
-import React, { FC, useState, ChangeEventHandler } from "react"
-import { dealFormat } from "@/entities/deal"
+import React, { FC } from "react"
+import { observer } from "mobx-react"
+import { dealFormStore } from "@/stores"
 import { Modal, ModalProps } from "@/ui-kit/modal"
 import { Fieldset } from "@/ui-kit/fieldset"
-import { TextInput, NumberInput } from "@/ui-kit/input"
 import { Button, ButtonSize } from "@/ui-kit/button"
-import styles from './deal-modal.css'
 import { i18n } from "@/i18n"
+import { TimeInput } from './components/time-input'
+import { ValueInput } from './components/value-input'
+import styles from './deal-modal.css'
 
-export const DealModal: FC<DealModalProps> = (props) => {
-  const [value, setValue] = useState(100)
+export const DealModal: FC = observer(() => {
+  const handleClose = () => {
+    dealFormStore.closeModal()
+  }
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    event.stopPropagation()
-    event.preventDefault()
-    const newNumber = Number(event.target.value)
-    const newValue = isNaN(newNumber) ? value : newNumber
-    setValue(newValue)    
+  const handleSubmit = () => {
+    dealFormStore.submit()
   }
 
   return (
-    <Modal {...props} title={i18n.makeDeal}>
+    <Modal show={dealFormStore.showModal} title={i18n.makeDeal} onClose={handleClose}>
       <div className={styles.content}>
         <form className={styles.form}>
           <Fieldset label={i18n.currentTime}>
-            <TextInput value={dealFormat(new Date())} disabled />
+            <TimeInput />
           </Fieldset>
           <Fieldset label={i18n.enterValue}>
-            <NumberInput value={value} autoFocus onInput={handleChange}/>
+            <ValueInput />
           </Fieldset>
         </form>
         <footer className={styles.footer}>
-          <Button size={ButtonSize.L}>{i18n.procced}</Button>
+          <Button size={ButtonSize.L} onClick={handleSubmit}>{i18n.procced}</Button>
         </footer>
       </div>
     </Modal>
   )
-}
-
-export interface DealModalProps extends ModalProps {}
+})

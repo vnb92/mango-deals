@@ -1,24 +1,9 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
+import { observer } from 'mobx-react'
 import { Button } from '@/ui-kit/button'
 import { i18n } from '@/i18n'
-import { useToggle } from '@/hooks'
-import { DealModal } from '@/components/deal-modal'
+import { dealFormStore } from '@/stores'
 
-export const NewDealButton: FC = () => {
-  const [show, toggleShow] = useToggle()
-
-  const handleClick = () => {
-    toggleShow()
-  }
-
-  const handleClose = () => {
-    toggleShow()
-  }
-
-  return (
-    <>
-      <Button onClick={handleClick}>{i18n.newDeal}</Button>
-      <DealModal show={show} onClose={handleClose} />
-    </>
-  )
-}
+export const NewDealButton: FC = observer(() => {
+  return <Button onClick={dealFormStore.openModal}>{i18n.newDeal}</Button>
+})
