@@ -1,5 +1,9 @@
-export const formatFractionDigits = (value: number) => {
-  return digitsFormatter.format(value)
+import { isNumber } from "./is-number";
+
+export const formatFractionDigits = (value: number | string) => {
+  const number = isNumber(value) ? value : Number(value)
+
+  return digitsFormatter.format(number)
 }
 
 const digitsFormatter = new Intl.NumberFormat("en", {

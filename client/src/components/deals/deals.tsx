@@ -1,8 +1,6 @@
 import React, {FC} from 'react'
-import { Deal } from '@/types'
-import { getDate, getTime } from '@/lib/date'
+import { Deal, dealFormat } from '@/entities/deal'
 import { formatFractionDigits } from '@/lib/number'
-import { classNames } from '@/lib/dom'
 import { i18n } from '@/i18n'
 import { Table } from '@/ui-kit/table'
 import { TrashButton } from '@/ui-kit/trash-button'
@@ -22,7 +20,7 @@ export const Deals: FC = () => {
         {mock.map(({ id, value, date }) => (
           <Table.Row key={id} className={styles.row}>
             <Table.Cell>{formatFractionDigits(value)}</Table.Cell>
-            <Table.Cell className={styles.dateCell}>{`${getDate(date)} ${getTime(date)}`}</Table.Cell>
+            <Table.Cell className={styles.dateCell}>{dealFormat(date)}</Table.Cell>
             <Table.Cell>
               <div className={styles.action}>
                 <TrashButton onClick={() => {}}/>

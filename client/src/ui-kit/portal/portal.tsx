@@ -3,19 +3,18 @@ import { createPortal } from 'react-dom'
 import { useMount, useUnmount } from '@/hooks'
 
 export const Portal: FC<PortalProps> = ({ children, id }) => {
-  const element = document.createElement('div')
+  const element = useRef(document.createElement('div'))
 
   useMount(() => {
-    element.id = id
-    document.body.appendChild(element)
-    
+    element.current.id = id
+    document.body.appendChild(element.current)
   })
 
   useUnmount(() => {
-    document.body.removeChild(element)
+    document.body.removeChild(element.current)
   })
 
-  return createPortal(children, element)
+  return createPortal(children, element.current)
 }
 
 interface PortalProps {
