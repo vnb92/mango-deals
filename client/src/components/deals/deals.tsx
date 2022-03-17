@@ -1,12 +1,14 @@
 import React, {FC} from 'react'
-import { Deal, dealFormat } from '@/entities/deal'
+import { observer } from 'mobx-react'
+import { dealDateFormat, Deal } from '@/entities/deal'
 import { formatFractionDigits } from '@/lib/number'
 import { i18n } from '@/i18n'
 import { Table } from '@/ui-kit/table'
 import { TrashButton } from '@/ui-kit/trash-button'
+import { dealsStore } from '@/stores'
 import styles from './deals.css'
 
-export const Deals: FC = () => {  
+export const Deals: FC = observer(() => {  
   return (
     <Table>
       <Table.Head>
@@ -17,24 +19,26 @@ export const Deals: FC = () => {
       </Table.Head>
 
       <Table.Body className={styles.body}>
-        {mock.map(({ id, value, date }) => (
-          <Table.Row key={id} className={styles.row}>
-            <Table.Cell>{formatFractionDigits(value)}</Table.Cell>
-            <Table.Cell className={styles.dateCell}>{dealFormat(date)}</Table.Cell>
-            <Table.Cell>
-              <div className={styles.action}>
-                <TrashButton onClick={() => {}}/>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-        ))}
+        {dealsStore.deals.map(deal => <Row deal={deal} />)}
       </Table.Body>
     </Table>
   )
-}
+})
 
-const mock: Deal[] = [
-  { id: '1', date: new Date(), value: 120 },
-  { id: '2', date: new Date(), value: 5.99 },
-  { id: '3', date: new Date(), value: 10 }
-]
+const Row: FC<RowProps> = observer(({ deal }) => {
+  return (
+    <Table.Row className={styles.row}>
+      <Table.Cell>{formatFractionDigits(deal.value)}</Table.Cell>
+      <Table.Cell className={styles.dateCell}>{dealDateFormat(deal.date)}</Table.Cell>
+      <Table.Cell>
+        <div className={styles.action}>
+          <TrashButton onClick={() => dealsStore.removeDeal(deal)}/>
+        </div>
+      </Table.Cell>
+    </Table.Row>
+  )
+})
+
+interface RowProps {
+  deal: Deal
+}

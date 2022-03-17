@@ -1,2 +1,2 @@
 export * from './deal'
-export * from './deal-format'
+export * from './deal-date-format'

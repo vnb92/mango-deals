@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx'
-import { dealFormat } from '@/entities/deal'
 import { dealsStore } from './deals-store'
 
 class DealFormStore implements IDealFormStore {
@@ -35,6 +34,8 @@ class DealFormStore implements IDealFormStore {
       value: this.value,
       date: this.date
     })
+
+    this.closeModal()
   }
 }
 

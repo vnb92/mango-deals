@@ -1,9 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 import { Deal } from '@/entities/deal'
 
+const mock: Deal[] = [
+  { id: '1', date: new Date(), value: 120 },
+  { id: '2', date: new Date(), value: 5.99 },
+  { id: '3', date: new Date(), value: 10 }
+]
+
 class DealsStore implements IDealsStore {
   showModal: boolean = false
-  deals: Deal[] = []
+  deals: Deal[] = mock
 
   public constructor () {
     makeAutoObservable(this)
@@ -21,8 +27,8 @@ class DealsStore implements IDealsStore {
     this.deals.push(deal)
   }
 
-  public removeDeal = (id: string) => {
-    this.deals = this.deals.filter((deal) => deal.id !== id)
+  public removeDeal = (deal: Deal) => {
+    this.deals.splice(this.deals.indexOf(deal), 1)
   }
 }
 

@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { dealFormStore } from "@/stores"
 import { TextInput } from "@/ui-kit/input"
 import { useInterval, useMount } from "@/hooks"
-import { dealFormat } from "@/entities/deal"
+import { dealDateFormat } from "@/entities/deal"
 
 export const TimeInput: FC = observer(() => {
   useInterval(1000, () => dealFormStore.setCurrentTime(new Date()))
@@ -11,6 +11,6 @@ export const TimeInput: FC = observer(() => {
   useMount(() => dealFormStore.setCurrentTime(new Date()))
 
   return (
-    <TextInput value={dealFormat(dealFormStore.date)} disabled />
+    <TextInput value={dealDateFormat(dealFormStore.date)} disabled />
   )
 })
