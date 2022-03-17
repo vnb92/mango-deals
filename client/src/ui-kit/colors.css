@@ -6,6 +6,7 @@
   --color-border-input: #3C4251;
   --color-border-input-focus: #00A3FF;
   --color-border-accent: rgba(0, 163, 255, 0.1);
+  --color-border-success: rgba(0, 255, 163, 0.1);
 
   /* background */
   --color-background-primary: #282F39;
@@ -16,6 +17,7 @@
   --color-background-modal-fallback: rgba(0, 0, 0, 0.85);
   --color-background-modal-content: rgba(255, 255, 255, 0.12);
   --color-backgound-input: rgba(44, 51, 61, 0.5);
+  --color-backgound-success: rgba(0, 255, 163, 0.4);
 
   /* text */
   --color-text-primary: #FFFFFF;

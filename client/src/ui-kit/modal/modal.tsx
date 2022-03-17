@@ -15,7 +15,9 @@ export const Modal: FC<ModalProps> = ({ children, title, show, onClose }) => {
         <div ref={ref} className={styles.content}>
           <header className={styles.header}>
             {!!title && <span>{title}</span>}
-            <CloseButton onClick={onClose} />
+            <div className={styles.close}>
+              <CloseButton onClick={onClose} />
+            </div>
           </header>
           {children}
         </div>

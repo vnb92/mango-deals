@@ -9,11 +9,19 @@
   background-color: var(--color-background-modal);
   backdrop-filter: blur(40px);
   font-family: var(--font-primary);
-  font-size: 24px;
+  font-size: 16px;
   color: var(--color-text-primary);
 
   @supports not (backdrop-filter: blur(40px)) {
     background-color: var(--color-background-modal-fallback);
+  }
+
+  @media (--breakpoint-s) {
+    font-size: 18px;
+  }
+  
+  @media (--breakpoint-m) {
+    font-size: 24px;
   }
 }
 
@@ -44,4 +52,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.close {
+  margin-left: auto;
 }

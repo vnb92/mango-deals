@@ -1,0 +1,31 @@
+@import '../../../../ui-kit/breakpoints.css';
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  cursor: pointer;
+}
+
+.icon {
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-backgound-success);
+  box-shadow: 0px 0px 0px 8px var(--color-border-success);
+  border-radius: 40px;
+}
+
+.text {
+  text-align: center;
+  margin-top: 27px;
+  max-width: 350px;
+
+  @media (--breakpoint-m) {
+    max-width: 100%;
+  }
+}

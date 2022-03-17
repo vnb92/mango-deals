@@ -3,6 +3,7 @@ import { dealsStore } from './deals-store'
 
 class DealFormStore implements IDealFormStore {
   showModal: boolean = false
+  showSuccessScreen: boolean = false
   date: Date | null = null
   value: number = 100
 
@@ -16,6 +17,10 @@ class DealFormStore implements IDealFormStore {
 
   public closeModal = () => {
     this.showModal = false
+  }
+
+  public setShowSuccessScreen = (value: boolean) => {
+    this.showSuccessScreen = value
   }
 
   public setCurrentTime = (date: Date) => {
@@ -35,7 +40,12 @@ class DealFormStore implements IDealFormStore {
       date: this.date
     })
 
-    this.closeModal()
+    this.setShowSuccessScreen(true)
+
+    window.setTimeout(() => {
+      this.closeModal()
+      this.setShowSuccessScreen(false)
+    }, 2000)
   }
 }
 
@@ -43,6 +53,7 @@ export const dealFormStore = new DealFormStore()
 
 export interface IDealFormStore {
   showModal: boolean
+  showSuccessScreen: boolean
   date: Date | null
   value: number
 }
