@@ -5,6 +5,8 @@ import { getDeals, deleteDeal } from '@/rest-api'
 class DealsStore implements IDealsStore {
   showModal: boolean = false
   deals: Deal[] = []
+  page: number = 1
+  hasMore: boolean = false
 
   public constructor () {
     makeAutoObservable(this)
@@ -28,8 +30,28 @@ class DealsStore implements IDealsStore {
     })
   }
 
-  public fetchDeals = () => {
-    getDeals().then(this.setDeals)
+  public setPage = (page: number) => {
+    this.page = page
+  }
+
+  public setHasMore = (has: boolean) => {
+    this.hasMore = has
+  }
+
+  public fetchDeals = (page = 1) => {
+    return getDeals(page).then(({ hasMore, deals }) => {
+      this.setHasMore(hasMore)
+      this.setDeals(deals)
+      this.setPage(page)
+    })
+  }
+
+  public nextDealsPage = () => {
+    this.fetchDeals(this.page + 1)
+  }
+
+  public previousDealsPage = () => {
+    this.fetchDeals(this.page - 1)
   }
 
   public addDeal = (deal: Deal) => {
@@ -50,4 +72,6 @@ export const dealsStore = new DealsStore()
 export interface IDealsStore {
   showModal: boolean
   deals: Deal[]
+  hasMore: boolean
+  page: number
 }
