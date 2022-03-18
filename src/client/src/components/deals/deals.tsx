@@ -22,6 +22,9 @@ export const Deals: FC = observer(() => {
       </Table.Head>
 
       <Table.Body className={styles.body}>
+        {/**
+         * @todo add remove animation. Use TransitionGroup.
+         **/}
         {dealsStore.deals.map(deal => <Row deal={deal} />)}
       </Table.Body>
     </Table>
