@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import { Deal } from '@/entities/deal'
-import { getDeals } from '@/rest-api'
+import { getDeals, deleteDeal } from '@/rest-api'
 
 class DealsStore implements IDealsStore {
   showModal: boolean = false
@@ -37,7 +37,11 @@ class DealsStore implements IDealsStore {
   }
 
   public removeDeal = (deal: Deal) => {
-    this.deals.splice(this.deals.indexOf(deal), 1)
+    deleteDeal(deal.id).then((id) => {
+      if(deal.id !== id) return
+    
+      this.deals.splice(this.deals.indexOf(deal), 1)
+    })
   }
 }
 

@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import { dealsStore } from './deals-store'
+import { addDeal } from '@/rest-api'
 
 class DealFormStore implements IDealFormStore {
   showModal: boolean = false
@@ -34,18 +35,21 @@ class DealFormStore implements IDealFormStore {
   public submit = () => {
     if(!this.date || !this.value) return
 
-    dealsStore.addDeal({
-      id: '1', //TODO: id from back
+    const deal = {
       value: this.value,
       date: this.date
+    }
+
+    addDeal(deal).then(deal => {
+      dealsStore.addDeal(deal)
+
+      this.setShowSuccessScreen(true)
+  
+      window.setTimeout(() => {
+        this.closeModal()
+        this.setShowSuccessScreen(false)
+      }, 2000)
     })
-
-    this.setShowSuccessScreen(true)
-
-    window.setTimeout(() => {
-      this.closeModal()
-      this.setShowSuccessScreen(false)
-    }, 2000)
   }
 }
 

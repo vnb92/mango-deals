@@ -1,7 +1,9 @@
-const base = '/api'
+const baseApiUrl = '/api'
 
 export const config = {
-  api: base,
-  getDeals: `${base}/deals`,
-  deal: `${base}/deal`,
+  api: {
+    baseApiUrl,
+    deals: `${baseApiUrl}/deals`,
+    deal: `${baseApiUrl}/deal`,
+  }
 }
