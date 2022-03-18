@@ -4,16 +4,24 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack serve --open --env mode=development",
-    "build": "webpack --env mode=production"
+    "start": "npm-run-all --parallel watch:client watch:build-server watch:server",
+    "watch:client": "webpack serve --open --config ./webpack.client.config.js --env mode=development",
+    "watch:build-server": "webpack --watch --config ./webpack.server.config.js --env mode=development",
+    "watch:server": "nodemon \"./dist/server.js\" --watch \"./dist\"",
+    "build:client": "webpack --config ./webpack.client.config.js --env mode=production",
+    "build:server": "webpack --config ./webpack.server.config.js --env mode=production"
   },
   "author": "",
-  "license": "ISC",
   "devDependencies": {
+    "nodemon": "^2.0.15",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^10.7.0",
     "@babel/preset-react": "^7.16.7",
     "@types/lodash": "^4.14.179",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
+    "@types/react-transition-group": "^4.4.4",
+    "@types/express": "^4.17.13",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.7.1",
@@ -37,8 +45,8 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "@types/react-transition-group": "^4.4.4",
     "clsx": "^1.1.1",
+    "express": "^4.17.3",
     "lodash": "^4.17.21",
     "mobx": "^6.4.2",
     "mobx-react": "^7.3.0",

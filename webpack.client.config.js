@@ -5,6 +5,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const path = require('path');
 
+const paths = {
+  root: path.resolve(__dirname, 'src/client/src'),
+  entry: path.resolve(__dirname, 'src/client/src/index.tsx'),
+  output: path.resolve(__dirname, 'dist'),
+  tsConfig: path.resolve(__dirname, 'src/client/tsconfig.json'),
+  htmlTemplate: path.resolve(__dirname, 'src/client/src/index.html')
+}
+
 module.exports = env => {
   const isDev = env.mode === 'development'
 
@@ -13,19 +21,19 @@ module.exports = env => {
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.css', '.svg'],
       alias: {
-        '@': path.resolve(__dirname, 'src')
-    }
+        '@': paths.root
+      }
     },
     entry: {
-      index: './src/index.tsx',
+      client: paths.entry,
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: paths.output,
       chunkFilename: isDev ? '[name].js' : '[name].[hash].js'
     },
     devServer: {
       static: {
-        directory: path.join(__dirname, 'dist'),
+        directory: paths.output,
       },
       compress: true,
       port: 4000,
@@ -38,7 +46,8 @@ module.exports = env => {
           use: {
             loader: "ts-loader",
             options: {
-              transpileOnly: true
+              transpileOnly: true,
+              configFile: paths.tsConfig 
             }
           }
         },
@@ -91,10 +100,10 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin({ typescript:{ configFile: paths.tsConfig }}),
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'src/index.html',
+        template: paths.htmlTemplate,
       }),
       new MiniCssExtractPlugin({
         filename: isDev ? '[name].css' : '[hash].css',
