@@ -1,4 +1,5 @@
 import express from 'express';
+import { v4 as uuid } from 'uuid';
 
 const app = express();
 const port = 3000
@@ -15,6 +16,7 @@ app.get('/api/deals', function(_, res) {
 
 app.post('/api/deal', function(req, res) {
   const deal = req.body  
+  deal.id = uuid()
   Deals.push(deal)
   res.send(deal)
 });
@@ -26,6 +28,6 @@ app.delete('/api/deal/:id', function(req, res) {
 });
 
 let Deals = [
-  { id: '1', date: new Date(), value: 100.1 },
-  { id: '2', date: new Date(), value: 50 },
+  { id: uuid(), date: new Date(), value: 100.1 },
+  { id: uuid(), date: new Date(), value: 50 },
 ]
