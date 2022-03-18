@@ -7,7 +7,7 @@ export const deleteDeal = (id: string): Promise<string> => {
   .then(response => response.text())
   .then(id => {  
     if(isString(id)) {
-      return Promise.resolve(id)
+      return id
     }
   
     throw new ResponseInvalidTypeException('id is not string')

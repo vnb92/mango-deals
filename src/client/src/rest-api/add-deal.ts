@@ -15,7 +15,7 @@ export const addDeal = (deal: Omit<Deal, 'id'>): Promise<Deal> => {
   .then(deal => {  
     if(isDeal(deal)) {
       deal.date = new Date(deal.date)
-      return Promise.resolve(deal)
+      return deal
     }
   
     throw new ResponseInvalidTypeException('response is not a deals')
