@@ -6,9 +6,12 @@ import { i18n } from '@/i18n'
 import { Table } from '@/ui-kit/table'
 import { TrashButton } from '@/ui-kit/trash-button'
 import { dealsStore } from '@/stores'
+import { useMount } from '@/hooks'
 import styles from './deals.css'
 
-export const Deals: FC = observer(() => {  
+export const Deals: FC = observer(() => {
+  useMount(() => dealsStore.fetchDeals())
+
   return (
     <Table>
       <Table.Head>

@@ -32,6 +32,9 @@ module.exports = env => {
       chunkFilename: isDev ? '[name].js' : '[name].[hash].js'
     },
     devServer: {
+      proxy: {
+        '/api': 'http://localhost:3000',
+      },
       static: {
         directory: paths.output,
       },

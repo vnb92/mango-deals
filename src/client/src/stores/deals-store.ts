@@ -1,15 +1,10 @@
 import { makeAutoObservable } from 'mobx'
 import { Deal } from '@/entities/deal'
-
-const mock: Deal[] = [
-  { id: '1', date: new Date(), value: 120 },
-  { id: '2', date: new Date(), value: 5.99 },
-  { id: '3', date: new Date(), value: 10 }
-]
+import { getDeals } from '@/rest-api'
 
 class DealsStore implements IDealsStore {
   showModal: boolean = false
-  deals: Deal[] = mock
+  deals: Deal[] = []
 
   public constructor () {
     makeAutoObservable(this)
@@ -21,6 +16,20 @@ class DealsStore implements IDealsStore {
 
   public closeModal = () => {
     this.showModal = false
+  }
+
+  public setDeals = (deals: Deal[]) => {
+    /**
+     * on backend: date is always string
+     */
+    this.deals = deals.map(deal => {
+      deal.date = new Date(deal.date)
+      return deal
+    })
+  }
+
+  public fetchDeals = () => {
+    getDeals().then(this.setDeals)
   }
 
   public addDeal = (deal: Deal) => {
