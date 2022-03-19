@@ -50,11 +50,7 @@ export const Deals: FC = observer(() => {
           {/**
            * @todo add remove animation. Use TransitionGroup.
            **/}
-          {deals.map((_, index, array) => {
-            const lastIndex = array.length - 1
-            const reverseIndex = lastIndex - index
-            const deal = array[reverseIndex]
-
+          {deals.map(deal => {
             return <Row key={deal.id} deal={deal} />
           })}
         </Table.Body>

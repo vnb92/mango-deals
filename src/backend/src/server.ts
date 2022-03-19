@@ -31,7 +31,7 @@ app.post('/api/deal/:page', function(req, res) {
   const deal = req.body
 
   deal.id = uuid()
-  db.push(deal)
+  db.add(deal)
 
   const pagesCount = db.getPagesCount(limit)
   const deals = db.getByPage(Number(page), limit)

@@ -5,10 +5,11 @@ class DB implements IDB {
 
   constructor (list: DBItem[] = []) {
     this.list = list
+    this.sort()
   }
 
-  push = (item: DBItem) => {
-    this.list.push(item)
+  add = (item: DBItem) => {
+    this.list.unshift(item)
     return this
   }
 
@@ -26,8 +27,12 @@ class DB implements IDB {
     return this.list.length
   }
 
-  getPagesCount (limit: number) {
+  getPagesCount = (limit: number) => {
     return Math.ceil(this.size / limit)
+  }
+
+  sort = (prop = 'date') => {
+    this.list.sort((a, b) => new Date(b[prop]).getTime() - new Date(a[prop]).getTime())
   }
 
   get = (startIndex: number, limit: number) => {  
