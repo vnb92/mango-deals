@@ -1,3 +1,8 @@
+.deals {
+  display: flex;
+  flex-direction: column;
+}
+
 .dateCell {
   font-weight: 400;
 }
@@ -5,7 +10,7 @@
 .body {
   .row {
     &:hover {
-      .action {
+      .remove {
         opacity: 1;
         transform: scale(1);
       }
@@ -13,9 +18,14 @@
   }
 }
 
-.action {
+.remove {
   display: inline-block;
   opacity: 0;
   transform: scale(0.3);
   transition: transform 300ms ease-out;
+}
+
+.pagination {
+  align-self: center;
+  margin: 30px 0;
 }

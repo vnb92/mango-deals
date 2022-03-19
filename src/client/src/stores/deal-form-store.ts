@@ -40,8 +40,10 @@ class DealFormStore implements IDealFormStore {
       date: this.date
     }
 
-    addDeal(deal).then(deal => {
-      dealsStore.addDeal(deal)
+    addDeal(deal).then(({ deals, pagesCount, hasMore }) => {
+      dealsStore.update(deals)
+      dealsStore.setHasMore(hasMore)
+      dealsStore.setPagesCount(pagesCount)
 
       this.setShowSuccessScreen(true)
   

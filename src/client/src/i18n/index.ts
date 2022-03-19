@@ -13,5 +13,7 @@ export const i18n = {
   makeDeal: 'Make a New Deal',
   currentTime: 'Current Time',
   enterValue: 'Enter value',
-  dealSuccessfull: `Your deal was submitted${nbsp}successfully!`
+  dealSuccessfull: `Your deal was submitted${nbsp}successfully!`,
+  loadNextPage: 'Load next page',
+  toStart: 'To start'
 }

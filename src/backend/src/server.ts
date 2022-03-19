@@ -1,6 +1,7 @@
 import express from 'express';
 import { v4 as uuid } from 'uuid';
 import paginate from 'express-paginate';
+import { db } from './db'
 
 const app = express();
 const port = 3000
@@ -14,39 +15,46 @@ app.use(paginate.middleware(10, 10));
 
 app.get('/api/deals', function(req, res) {
   const { limit, page } = req.query as any
-  const dealsCount = Deals.length
-  const pageCount = Math.ceil(dealsCount / limit)
-  const leftHandDeals = page === 1 ? 0 : (page - 1) * limit
-  
-  const limitedDeals = Deals.slice(leftHandDeals, leftHandDeals+limit)  
+  const deals = db.getByPage(page, limit)
+  const pagesCount = db.getPagesCount(limit)
 
-  res.send({ deals: limitedDeals, hasMore: paginate.hasNextPages(req)(pageCount) });
+  res.send({
+    deals,
+    hasMore: paginate.hasNextPages(req)(pagesCount),
+    pagesCount
+  });
 });
 
-app.post('/api/deal', function(req, res) {
-  const deal = req.body  
+app.post('/api/deal/:page', function(req, res) {
+  const { limit } = req.query as any
+  const { page } = req.params
+  const deal = req.body
+
   deal.id = uuid()
-  Deals.push(deal)
-  res.send(deal)
+  db.push(deal)
+
+  const pagesCount = db.getPagesCount(limit)
+  const deals = db.getByPage(Number(page), limit)
+
+  res.send({
+    deals,
+    hasMore: paginate.hasNextPages(req)(pagesCount),
+    pagesCount
+  })
 });
 
-app.delete('/api/deal/:id', function(req, res) {
-  const id = req.params.id
-  Deals = Deals.filter(deal => deal.id !== id)
-  res.send(id)
-});
+app.delete('/api/deal/:page/:id', function(req, res) {
+  const { limit } = req.query as any
+  const { id, page } = req.params
+  
+  db.remove(id)
+  const pagesCount = db.getPagesCount(limit)
+  const deals = db.getByPage(Number(page), limit)
 
-let Deals = [
-  { id: uuid(), date: new Date(), value: 1 },
-  { id: uuid(), date: new Date(), value: 2 },
-  { id: uuid(), date: new Date(), value: 3 },
-  { id: uuid(), date: new Date(), value: 4 },
-  { id: uuid(), date: new Date(), value: 5 },
-  { id: uuid(), date: new Date(), value: 6 },
-  { id: uuid(), date: new Date(), value: 7 },
-  { id: uuid(), date: new Date(), value: 8 },
-  { id: uuid(), date: new Date(), value: 9 },
-  { id: uuid(), date: new Date(), value: 10 },
-  { id: uuid(), date: new Date(), value: 11 },
-  { id: uuid(), date: new Date(), value: 12 },
-]
+  res.send({
+    id,
+    deals,
+    hasMore: paginate.hasNextPages(req)(pagesCount),
+    pagesCount
+  })
+});

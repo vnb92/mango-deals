@@ -6,6 +6,7 @@ class DealsStore implements IDealsStore {
   showModal: boolean = false
   deals: Deal[] = []
   page: number = 1
+  pagesCount: number = 1
   hasMore: boolean = false
 
   public constructor () {
@@ -34,15 +35,20 @@ class DealsStore implements IDealsStore {
     this.page = page
   }
 
+  public setPagesCount = (count: number) => {
+    this.pagesCount = count
+  }
+
   public setHasMore = (has: boolean) => {
     this.hasMore = has
   }
 
   public fetchDeals = (page = 1) => {
-    return getDeals(page).then(({ hasMore, deals }) => {
+    return getDeals(page).then(({ hasMore, deals, pagesCount }) => {
       this.setHasMore(hasMore)
       this.setDeals(deals)
       this.setPage(page)
+      this.setPagesCount(pagesCount)
     })
   }
 
@@ -54,15 +60,17 @@ class DealsStore implements IDealsStore {
     this.fetchDeals(this.page - 1)
   }
 
-  public addDeal = (deal: Deal) => {
-    this.deals.push(deal)
+  public update = (deals: Deal[]) => {
+    this.deals = deals
   }
 
   public removeDeal = (deal: Deal) => {
-    deleteDeal(deal.id).then((id) => {
+    deleteDeal(deal.id).then(({id, pagesCount, deals, hasMore }) => {
       if(deal.id !== id) return
-    
-      this.deals.splice(this.deals.indexOf(deal), 1)
+      this.update(deals)
+
+      this.setPagesCount(pagesCount)
+      this.setHasMore(hasMore)
     })
   }
 }
@@ -74,4 +82,5 @@ export interface IDealsStore {
   deals: Deal[]
   hasMore: boolean
   page: number
+  pagesCount: number
 }
