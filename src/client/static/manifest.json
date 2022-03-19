@@ -4,7 +4,7 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#1a082c",
+  "background_color": "#282F39",
   "description": "pwa mango deals",
   "icons": [{
     "src": "pwa.png",
