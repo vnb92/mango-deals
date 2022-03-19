@@ -8,7 +8,7 @@ import { TrashButton } from '@/ui-kit/trash-button'
 import { dealsStore } from '@/stores'
 import { useMount } from '@/hooks'
 import styles from './deals.css'
-import { Button } from '@/ui-kit/button'
+import { Button, ButtonTheme } from '@/ui-kit/button'
 import { Nullable } from '@/types'
 
 export const Deals: FC = observer(() => {
@@ -62,7 +62,7 @@ export const Deals: FC = observer(() => {
 
       {paginationTitle && (
         <div className={styles.pagination}>
-          <Button onClick={handlePagination}>
+          <Button onClick={handlePagination} theme={ButtonTheme.Secondary}>
             {paginationTitle}
           </Button>
         </div>

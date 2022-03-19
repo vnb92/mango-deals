@@ -23,12 +23,15 @@
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #CAD3E8;
   --color-text-secondary-dark: #9AA5BE;
+  --color-text-button-secondary: #00A3FF;
+  --color-text-button-secondary-80: #00a3ffc2;
 
   /* gradient */
   --gradient-background: linear-gradient(180deg, #1F252F 0%, #27303E 100%);
   --gradient-primary: linear-gradient(180deg, #3E9FFF 0%, #00AAE0 100%);
 
   /* button */
-  --color-button-secondary: #9AA5BE;
-  --color-button-secondary-hover: rgba(255, 255, 255, 0.8);
+  --color-button-icon: #9AA5BE;
+  --color-button-icon-hover: rgba(255, 255, 255, 0.8);
+  --color-button-secondary: rgba(0, 163, 255, 0.1);
 }
