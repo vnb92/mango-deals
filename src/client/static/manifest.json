@@ -1,0 +1,14 @@
+{
+  "name": "mango deals",
+  "short_name": "mango",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a082c",
+  "description": "pwa mango deals",
+  "icons": [{
+    "src": "pwa.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }]
+}

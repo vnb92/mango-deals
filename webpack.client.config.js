@@ -3,14 +3,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const fs = require('fs');
 
 const paths = {
   root: path.resolve(__dirname, 'src/client/src'),
   entry: path.resolve(__dirname, 'src/client/src/index.tsx'),
+  sw: path.resolve(__dirname, 'src/client/src/sw/sw.ts'),
   output: path.resolve(__dirname, 'dist'),
   tsConfig: path.resolve(__dirname, 'src/client/tsconfig.json'),
-  htmlTemplate: path.resolve(__dirname, 'src/client/src/index.html')
+  htmlTemplate: path.resolve(__dirname, 'src/client/src/index.html'),
+  static: path.resolve(__dirname, 'src/client/static')
 }
 
 module.exports = env => {
@@ -26,6 +30,7 @@ module.exports = env => {
     },
     entry: {
       client: paths.entry,
+      sw: paths.sw
     },
     output: {
       path: paths.output,
@@ -36,7 +41,7 @@ module.exports = env => {
         '/api': 'http://localhost:3000',
       },
       static: {
-        directory: paths.output,
+        directory: paths.static,
       },
       compress: true,
       port: 4000,
@@ -110,6 +115,11 @@ module.exports = env => {
       }),
       new MiniCssExtractPlugin({
         filename: isDev ? '[name].css' : '[hash].css',
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: 'src/client/static/manifest.json', to: '/dist/manifest.json' },
+        ],
       }),
       new webpack.EnvironmentPlugin({
         DEV: isDev,

@@ -5,5 +5,6 @@ export const config = {
     baseApiUrl,
     deals: `${baseApiUrl}/deals`,
     deal: `${baseApiUrl}/deal`,
-  }
+  },
+  sw: '/sw.js'
 }
