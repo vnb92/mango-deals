@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react'
 import { observer } from 'mobx-react'
-import { Chart, ChartConfiguration } from '@/chart'
+import { Chart, ChartConfiguration, ChartRefHandler } from '@/chart'
 import { Nullable } from '@/types'
-import { dealsStore } from '@/stores'
+import { dealsStore, chartStore } from '@/stores'
 import { Deal } from '@/entities/deal'
 
 export const MangoChart: FC = observer(() => {
@@ -13,8 +13,12 @@ export const MangoChart: FC = observer(() => {
     setConfig(getConfig(deals))
   }, [deals])
 
+  const handleRef: ChartRefHandler = (chart) => {
+    chartStore.setChart(chart)
+  }
+
   return (
-    <Chart config={config} />
+    <Chart config={config} onRef={handleRef} />
   )
 })
 

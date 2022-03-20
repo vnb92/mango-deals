@@ -10,6 +10,7 @@ class DealsStore implements IDealsStore {
   pageLimit: number = 10
   pagesCount: number = 1
   hasMore: boolean = false
+  hoveredDealId: string = ''
 
   public constructor () {
     makeAutoObservable(this)
@@ -21,6 +22,10 @@ class DealsStore implements IDealsStore {
 
   public closeModal = () => {
     this.showModal = false
+  }
+
+  public setHoveredDealId = (id: string) => {
+    this.hoveredDealId = id
   }
 
   get deals (): Deal[] {
@@ -91,4 +96,5 @@ export interface IDealsStore {
   page: number
   pageLimit: number
   pagesCount: number
+  hoveredDealId: string
 }

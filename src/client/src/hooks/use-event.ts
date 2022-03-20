@@ -1,19 +1,18 @@
-import { MutableRefObject, useEffect } from 'react'
+import { useEffect, RefObject } from 'react'
 import { Nullable } from '@/types'
 
-export const useEvent = ({ event, handler, target = window }: UseEventParams): void => {
+export const useEvent = ({ event, handler, ref }: UseEventParams): void => {
   useEffect(() => {
-    const node = 
-    target?.addEventListener(event, handler)
+    ref?.current?.addEventListener(event, handler)
 
     return () => {
-      target?.removeEventListener(event, handler)
+      ref?.current?.removeEventListener(event, handler)
     }
-  }, [event, handler, target])
+  }, [event, handler, ref])
 }
 
 export interface UseEventParams {
   event: keyof HTMLElementEventMap
   handler: EventListener
-  target?: Nullable<HTMLElement> | Window
+  ref?: Nullable<RefObject<HTMLElement>>
 }

@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, forwardRef, ForwardRefExoticComponent, PropsWithChildren, RefAttributes } from 'react'
 import { classNames } from '@/lib/dom'
 import { CompoundComponent, PropsWithClassName } from '@/lib/component'
 import styles from './table.css'
@@ -20,9 +20,9 @@ Table.HeadCell = ({ children, className }) => {
 Table.Body = ({ children, className }) => {
   return <tbody className={classNames(styles.body, className)}>{children}</tbody>
 }
-Table.Row = ({ children, className }) => {
-  return <tr className={classNames(styles.row, className)}>{children}</tr>
-}
+Table.Row = forwardRef(({ children, className }, ref) => {
+  return <tr ref={ref} className={classNames(styles.row, className)}>{children}</tr>
+})
 Table.Cell = ({ children, className }) => {
   return <td className={classNames(styles.cell, className)}>{children}</td>
 }
@@ -31,6 +31,6 @@ interface TableSubComponents {
   Head: FC<PropsWithClassName>
   HeadCell: FC<PropsWithClassName>
   Body: FC<PropsWithClassName>
-  Row: FC<PropsWithClassName>
+  Row: ForwardRefExoticComponent<PropsWithChildren<PropsWithClassName> & RefAttributes<HTMLTableRowElement>>
   Cell: FC<PropsWithClassName>
 }

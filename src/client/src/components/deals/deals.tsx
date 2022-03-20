@@ -1,12 +1,12 @@
-import React, {FC, useCallback, useMemo, memo} from 'react'
+import React, {FC, useCallback, useMemo, memo, useRef} from 'react'
 import { observer } from 'mobx-react'
 import { dealDateFormat, Deal } from '@/entities/deal'
 import { formatFractionDigits } from '@/lib/number'
 import { i18n } from '@/i18n'
 import { Table } from '@/ui-kit/table'
 import { TrashButton } from '@/ui-kit/trash-button'
-import { dealsStore } from '@/stores'
-import { useMount } from '@/hooks'
+import { dealsStore, chartStore } from '@/stores'
+import { useMount, useEvent } from '@/hooks'
 import styles from './deals.css'
 import { Button, ButtonTheme } from '@/ui-kit/button'
 import { Nullable } from '@/types'
@@ -72,8 +72,16 @@ export const Deals: FC = observer(() => {
 })
 
 const Row: FC<RowProps> = memo(observer(({ deal }) => {
+  const ref = useRef<HTMLTableRowElement | null>(null)
+
+  const handler = () => {    
+    chartStore.crosshairShowAt(deal)
+  }
+
+  useEvent({ event: 'mouseenter', handler, ref })
+
   return (
-    <Table.Row className={styles.row}>
+    <Table.Row ref={ref} className={styles.row}>
       <Table.Cell>{formatFractionDigits(deal.value)}</Table.Cell>
       <Table.Cell className={styles.dateCell}>{dealDateFormat(deal.date)}</Table.Cell>
       <Table.Cell>
