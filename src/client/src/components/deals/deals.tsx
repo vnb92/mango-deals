@@ -12,7 +12,7 @@ import { Button, ButtonTheme } from '@/ui-kit/button'
 import { Nullable } from '@/types'
 
 export const Deals: FC = observer(() => {
-  const { deals, pagesCount, hasMore, fetchDeals, nextDealsPage } = dealsStore
+  const { pageDeals, pagesCount, hasMore, fetchDeals, nextDealsPage } = dealsStore
 
   useMount(() => fetchDeals())
 
@@ -32,8 +32,12 @@ export const Deals: FC = observer(() => {
     if (!hasMore && pagesCount > 1) {
       return i18n.toStart
     }
+
+    if (hasMore) {
+      return i18n.loadNextPage
+    }
   
-    return i18n.loadNextPage
+    return null
   }, [hasMore, pagesCount])
 
   return (
@@ -50,7 +54,7 @@ export const Deals: FC = observer(() => {
           {/**
            * @todo add remove animation. Use TransitionGroup.
            **/}
-          {deals.map(deal => {
+          {pageDeals.map(deal => {
             return <Row key={deal.id} deal={deal} />
           })}
         </Table.Body>

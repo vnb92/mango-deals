@@ -1,6 +1,5 @@
 import { config } from "@/config"
 import { Deal } from "@/entities/deal"
-import { isDeal } from "@/entities/deal/is-deal"
 import { ResponseInvalidTypeException } from "./response-exception"
 import { ApiResponse } from "./types/api-response"
 
@@ -10,7 +9,7 @@ export const getDeals = (page = 1): Promise<DealsResponse> => {
   .then(response => {
     const { deals, hasMore, pagesCount } = response
   
-    if(Array.isArray(deals) && isDeal(deals[0])) {
+    if(Array.isArray(deals)) {
       return ({
         hasMore,
         pagesCount,

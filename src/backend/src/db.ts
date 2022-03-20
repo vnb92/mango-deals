@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import { random } from '@/lib/number';
 
 class DB implements IDB {
   readonly list: DBItem[] = []
@@ -46,19 +47,20 @@ class DB implements IDB {
   }
 }
 
+const randomValue = () => random(100)
 export const db = new DB([
-  { id: uuid(), date: new Date(), value: 1 },
-  { id: uuid(), date: new Date(), value: 2 },
-  { id: uuid(), date: new Date(), value: 3 },
-  { id: uuid(), date: new Date(), value: 4 },
-  { id: uuid(), date: new Date(), value: 5 },
-  { id: uuid(), date: new Date(), value: 6 },
-  { id: uuid(), date: new Date(), value: 7 },
-  { id: uuid(), date: new Date(), value: 8 },
-  { id: uuid(), date: new Date(), value: 9 },
-  { id: uuid(), date: new Date(), value: 10 },
-  { id: uuid(), date: new Date(), value: 11 },
-  { id: uuid(), date: new Date(), value: 12 },
+  { id: uuid(), date: new Date(1), value: randomValue() },
+  { id: uuid(), date: new Date(2), value: randomValue() },
+  { id: uuid(), date: new Date(3), value: randomValue() },
+  { id: uuid(), date: new Date(4), value: randomValue() },
+  { id: uuid(), date: new Date(5), value: randomValue() },
+  { id: uuid(), date: new Date(6), value: randomValue() },
+  { id: uuid(), date: new Date(7), value: randomValue() },
+  { id: uuid(), date: new Date(8), value: randomValue() },
+  { id: uuid(), date: new Date(9), value: randomValue() },
+  { id: uuid(), date: new Date(10), value: randomValue() },
+  { id: uuid(), date: new Date(11), value: randomValue() },
+  { id: uuid(), date: new Date(12), value: randomValue() },
 ])
 
 interface IDB {

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import { Header } from '@/components/header'
-import { Chart } from '@/components/chart'
+import { MangoChart } from '@/components/mango-chart'
 import { Deals } from '@/components/deals'
 import { DealModal } from '@/components/deal-modal'
 import { ViewportProvider } from '@/context/viewport-context'
@@ -15,7 +15,7 @@ export const App: FC = () => {
         </section>
 
         <section className={styles.chart}>
-          <Chart />
+          <MangoChart />
         </section>
 
         <section className={styles.deals}>

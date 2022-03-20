@@ -4,8 +4,10 @@ import { getDeals, deleteDeal } from '@/rest-api'
 
 class DealsStore implements IDealsStore {
   showModal: boolean = false
-  deals: Deal[] = []
+  pageDeals: Deal[] = []
+  prevPageDeals: Deal[] = []
   page: number = 1
+  pageLimit: number = 10
   pagesCount: number = 1
   hasMore: boolean = false
 
@@ -21,14 +23,26 @@ class DealsStore implements IDealsStore {
     this.showModal = false
   }
 
+  get deals (): Deal[] {
+    return this.prevPageDeals.concat(this.pageDeals).reverse().slice(0, this.pageLimit)
+  }
+
   public setDeals = (deals: Deal[]) => {
+    if (this.hasMore) {
+      this.setPrevDeals(this.pageDeals)
+    }
+
     /**
      * on backend: date is always string
      */
-    this.deals = deals.map(deal => {
+    this.pageDeals = deals.map(deal => {
       deal.date = new Date(deal.date)
       return deal
     })
+  }
+
+  private setPrevDeals = (deals: Deal[]) => {
+    this.prevPageDeals = deals
   }
 
   public setPage = (page: number) => {
@@ -44,11 +58,11 @@ class DealsStore implements IDealsStore {
   }
 
   public fetchDeals = (page = 1) => {
-    return getDeals(page).then(({ hasMore, deals, pagesCount }) => {
-      this.setHasMore(hasMore)
+    getDeals(page).then(({ hasMore, deals, pagesCount }) => {
       this.setDeals(deals)
       this.setPage(page)
       this.setPagesCount(pagesCount)
+      this.setHasMore(hasMore)
     })
   }
 
@@ -56,19 +70,11 @@ class DealsStore implements IDealsStore {
     this.fetchDeals(this.page + 1)
   }
 
-  public previousDealsPage = () => {
-    this.fetchDeals(this.page - 1)
-  }
-
-  public update = (deals: Deal[]) => {
-    this.deals = deals
-  }
-
   public removeDeal = (deal: Deal) => {
-    deleteDeal(deal.id).then(({id, pagesCount, deals, hasMore }) => {
+    deleteDeal(deal.id, this.page, this.pageLimit).then(({id, pagesCount, deals, hasMore }) => {      
       if(deal.id !== id) return
-      this.update(deals)
 
+      this.setDeals(deals)
       this.setPagesCount(pagesCount)
       this.setHasMore(hasMore)
     })
@@ -79,8 +85,10 @@ export const dealsStore = new DealsStore()
 
 export interface IDealsStore {
   showModal: boolean
-  deals: Deal[]
+  pageDeals: Deal[]
+  prevPageDeals: Deal[]
   hasMore: boolean
   page: number
+  pageLimit: number
   pagesCount: number
 }

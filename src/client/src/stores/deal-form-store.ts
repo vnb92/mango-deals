@@ -41,7 +41,7 @@ class DealFormStore implements IDealFormStore {
     }
 
     addDeal(deal).then(({ deals, pagesCount, hasMore }) => {
-      dealsStore.update(deals)
+      dealsStore.setDeals(deals)
       dealsStore.setHasMore(hasMore)
       dealsStore.setPagesCount(pagesCount)
 
