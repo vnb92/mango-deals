@@ -49,18 +49,8 @@ class DB implements IDB {
 
 const randomValue = () => random(100)
 export const db = new DB([
-  { id: uuid(), date: new Date(1), value: randomValue() },
-  { id: uuid(), date: new Date(2), value: randomValue() },
-  { id: uuid(), date: new Date(3), value: randomValue() },
-  { id: uuid(), date: new Date(4), value: randomValue() },
-  { id: uuid(), date: new Date(5), value: randomValue() },
-  { id: uuid(), date: new Date(6), value: randomValue() },
-  { id: uuid(), date: new Date(7), value: randomValue() },
-  { id: uuid(), date: new Date(8), value: randomValue() },
-  { id: uuid(), date: new Date(9), value: randomValue() },
-  { id: uuid(), date: new Date(10), value: randomValue() },
-  { id: uuid(), date: new Date(11), value: randomValue() },
-  { id: uuid(), date: new Date(12), value: randomValue() },
+  { id: uuid(), date: new Date(), value: randomValue() },
+  { id: uuid(), date: new Date(), value: randomValue() },
 ])
 
 interface IDB {
