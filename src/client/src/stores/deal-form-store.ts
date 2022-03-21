@@ -3,10 +3,10 @@ import { dealsStore } from './deals-store'
 import { addDeal } from '@/rest-api'
 
 class DealFormStore implements IDealFormStore {
-  showModal: boolean = false
-  showSuccessScreen: boolean = false
+  showModal = false
+  showSuccessScreen = false
   date: Date | null = null
-  value: number = 100
+  value = 100
 
   public constructor () {
     makeAutoObservable(this)

@@ -1,8 +1,8 @@
+import { ResponseInvalidTypeException } from "./response-exception"
+import { ApiResponse } from "./types/api-response"
 import { config } from "@/config"
 import { Deal } from "@/entities/deal"
 import { isDeal } from "@/entities/deal/is-deal"
-import { ResponseInvalidTypeException } from "./response-exception"
-import { ApiResponse } from "./types/api-response"
 
 export const addDeal = (deal: Omit<Deal, 'id'>, page = 1): Promise<AddDealResponse> => {
   return fetch(`${config.api.deal}/${page}`, {

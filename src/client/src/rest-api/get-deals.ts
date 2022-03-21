@@ -1,7 +1,7 @@
-import { config } from "@/config"
-import { Deal } from "@/entities/deal"
 import { ResponseInvalidTypeException } from "./response-exception"
 import { ApiResponse } from "./types/api-response"
+import { config } from "@/config"
+import { Deal } from "@/entities/deal"
 
 export const getDeals = (page = 1): Promise<DealsResponse> => {
   return fetch(`${config.api.deals}?page=${page}`)

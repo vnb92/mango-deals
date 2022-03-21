@@ -1,6 +1,6 @@
 import React, { FC, MouseEventHandler } from "react";
-import Success from '@/ui-kit/icons/success.svg'
 import styles from './success-screen.css'
+import Success from '@/ui-kit/icons/success.svg'
 import { i18n } from "@/i18n";
 import { classNames } from "@/lib/dom";
 

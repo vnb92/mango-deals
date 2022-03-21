@@ -1,7 +1,7 @@
 import React, {FC, forwardRef, ForwardRefExoticComponent, PropsWithChildren, RefAttributes } from 'react'
+import styles from './table.css'
 import { classNames } from '@/lib/dom'
 import { CompoundComponent, PropsWithClassName } from '@/lib/component'
-import styles from './table.css'
 
 export const Table: CompoundComponent<PropsWithClassName, TableSubComponents> = ({ children, className }) => {  
   return (

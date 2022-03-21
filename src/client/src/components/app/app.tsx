@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
+import styles from './app.css'
 import { Header } from '@/components/header'
 import { MangoChart } from '@/components/mango-chart'
 import { Deals } from '@/components/deals'
 import { DealModal } from '@/components/deal-modal'
 import { ViewportProvider } from '@/context/viewport-context'
-import styles from './app.css'
 
 export const App: FC = () => {
   return (

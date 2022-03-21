@@ -1,13 +1,13 @@
 import React, { FC, KeyboardEventHandler } from "react"
 import { observer } from "mobx-react"
+import { TimeInput } from '../time-input'
+import { ValueInput } from '../value-input'
+import styles from './deal-form.css'
 import { dealFormStore } from "@/stores"
 import { Fieldset } from "@/ui-kit/fieldset"
 import { Button, ButtonSize } from "@/ui-kit/button"
 import { i18n } from "@/i18n"
 import { PhysicalKeyCode } from "@/lib/dom"
-import { TimeInput } from '../time-input'
-import { ValueInput } from '../value-input'
-import styles from './deal-form.css'
 
 export const DealForm: FC = observer(() => {
   const handleSubmit = () => {

@@ -1,7 +1,5 @@
 /// <reference lib="WebWorker" />
 
-import { response, request } from "express"
-
 export type {}
 
 declare const self: ServiceWorkerGlobalScope

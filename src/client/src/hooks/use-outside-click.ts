@@ -1,6 +1,6 @@
 import { RefObject } from 'react'
-import { AnyFn, Nullable } from '@/types'
 import { useEvent } from './use-event'
+import { AnyFn, Nullable } from '@/types'
 
 export const useOutsideClick = (ref: Nullable<RefObject<HTMLElement>>, handler?: AnyFn): void => {
   const handleClickOutside = (event: Event) => {

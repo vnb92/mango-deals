@@ -1,9 +1,9 @@
+import { ResponseInvalidTypeException } from "./response-exception"
+import { ApiResponse } from "./types/api-response"
 import { config } from "@/config"
 import { Deal } from "@/entities/deal"
 import { isNumber } from "@/lib/number"
 import { isString } from "@/lib/string"
-import { ResponseInvalidTypeException } from "./response-exception"
-import { ApiResponse } from "./types/api-response"
 import { isDeal } from "@/entities/deal/is-deal"
 
 export const deleteDeal = (id: string, page = 1, limit = 10): Promise<DeleteDealResponse> => {

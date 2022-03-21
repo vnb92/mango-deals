@@ -3,14 +3,14 @@ import { Deal } from '@/entities/deal'
 import { getDeals, deleteDeal } from '@/rest-api'
 
 class DealsStore implements IDealsStore {
-  showModal: boolean = false
+  showModal = false
   pageDeals: Deal[] = []
   prevPageDeals: Deal[] = []
-  page: number = 1
-  pageLimit: number = 10
-  pagesCount: number = 1
-  hasMore: boolean = false
-  hoveredDealId: string = ''
+  page = 1
+  pageLimit = 10
+  pagesCount = 1
+  hasMore = false
+  hoveredDealId = ''
 
   public constructor () {
     makeAutoObservable(this)

@@ -1,10 +1,10 @@
 import React, { FC, KeyboardEventHandler } from 'react'
+import { FadeTransition } from '../animations'
+import styles from './modal.css'
 import { Portal } from '@/ui-kit/portal'
 import { CloseButton } from '@/ui-kit/close-button'
 import { VoidFn } from '@/types'
 import { classNames, PhysicalKeyCode } from '@/lib/dom'
-import styles from './modal.css'
-import { FadeTransition } from '../animations'
 
 export const Modal: FC<ModalProps> = ({ children, title, show, onClose }) => {
   const handleKeyDown: KeyboardEventHandler = (event) => {
