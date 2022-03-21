@@ -2,10 +2,11 @@ import React, { FC, MouseEventHandler } from "react";
 import Success from '@/ui-kit/icons/success.svg'
 import styles from './success-screen.css'
 import { i18n } from "@/i18n";
+import { classNames } from "@/lib/dom";
 
-export const SuccessScreen: FC<SuccessScreenProps> = ({ onClick }) => {
+export const SuccessScreen: FC<SuccessScreenProps> = ({ onClick, show }) => {
   return (
-    <div className={styles.screen} onClick={onClick}>
+    <div className={classNames(styles.screen, show && styles.show)} onClick={onClick}>
       <div className={styles.icon}>
         <Success />
       </div>
@@ -16,4 +17,5 @@ export const SuccessScreen: FC<SuccessScreenProps> = ({ onClick }) => {
 
 export interface SuccessScreenProps {
   onClick: MouseEventHandler<HTMLDivElement>
+  show: boolean
 }

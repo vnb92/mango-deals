@@ -15,10 +15,8 @@ export const DealModal: FC = observer(() => {
   return (
     <Modal show={dealFormStore.showModal} title={dealFormStore.showSuccessScreen ? '' : i18n.makeDeal} onClose={handleClose}>
       <div className={styles.content}>
-        {dealFormStore.showSuccessScreen
-          ? <SuccessScreen onClick={handleClose} />
-          : <DealForm />
-        }
+        {!dealFormStore.showSuccessScreen && <DealForm />}
+        <SuccessScreen onClick={handleClose} show={dealFormStore.showSuccessScreen} />
       </div>
     </Modal>
   )

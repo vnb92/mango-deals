@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { CSSTransition, CSSTransitionProps } from './transition'
-import styles from './animations.css'
+import { CSSTransition, CSSTransitionProps } from '../transition'
+import styles from './fade.css'
 
 export const FadeTransition: FC<Partial<CSSTransitionProps>> = ({ children, in: inProp }) => (
   <CSSTransition

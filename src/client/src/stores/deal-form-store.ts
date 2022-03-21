@@ -18,6 +18,7 @@ class DealFormStore implements IDealFormStore {
 
   public closeModal = () => {
     this.showModal = false
+    this.setShowSuccessScreen(false)
   }
 
   public setShowSuccessScreen = (value: boolean) => {
@@ -49,8 +50,7 @@ class DealFormStore implements IDealFormStore {
   
       window.setTimeout(() => {
         this.closeModal()
-        this.setShowSuccessScreen(false)
-      }, 2000)
+      }, 3000)
     })
   }
 }

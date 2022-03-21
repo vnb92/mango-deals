@@ -1,5 +1,5 @@
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
+import { CSSTransitionProps, CSSTransitionClassNames } from 'react-transition-group/CSSTransition'
 
 export {
   TransitionGroup,
@@ -7,5 +7,6 @@ export {
 }
 
 export type {
-  CSSTransitionProps
+  CSSTransitionProps,
+  CSSTransitionClassNames
 }

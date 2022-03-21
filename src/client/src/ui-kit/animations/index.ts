@@ -1,2 +1,2 @@
 export * from './transition'
-export * from './animations'
+export * from './fade'

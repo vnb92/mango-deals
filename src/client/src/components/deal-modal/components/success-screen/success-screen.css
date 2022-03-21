@@ -1,12 +1,25 @@
 @import '../../../../ui-kit/breakpoints.css';
 
 .screen {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
   cursor: pointer;
+  transition: opacity 300ms;
+  opacity: 0;
+}
+
+.screen.show {
+  opacity: 1;
+
+  .icon {
+    transform: scale(1);
+  }
 }
 
 .icon {
@@ -18,6 +31,8 @@
   background-color: var(--color-backgound-success);
   box-shadow: 0px 0px 0px 8px var(--color-border-success);
   border-radius: 40px;
+  transition: transform 800ms var(--ease-out-back);
+  transform: scale(0.7);
 }
 
 .text {
