@@ -10,6 +10,7 @@ import { useMount, useEvent } from '@/hooks'
 import styles from './deals.css'
 import { Button, ButtonTheme } from '@/ui-kit/button'
 import { Nullable } from '@/types'
+import { TransitionGroup, FadeTransition } from '@/ui-kit/animations'
 
 export const Deals: FC = observer(() => {
   const { pageDeals, pagesCount, hasMore, fetchDeals, nextDealsPage } = dealsStore
@@ -51,12 +52,15 @@ export const Deals: FC = observer(() => {
         </Table.Head>
 
         <Table.Body className={styles.body}>
-          {/**
-           * @todo add remove animation. Use TransitionGroup.
-           **/}
-          {pageDeals.map(deal => {
-            return <Row key={deal.id} deal={deal} />
-          })}
+           <TransitionGroup className={styles.transitionGroup}>
+              {pageDeals.map(deal => {
+                return (
+                  <FadeTransition key={deal.id}>
+                    <Row deal={deal} />
+                  </FadeTransition>
+                )
+              })}
+           </TransitionGroup>
         </Table.Body>
       </Table>
 

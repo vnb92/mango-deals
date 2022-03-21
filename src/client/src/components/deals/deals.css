@@ -18,6 +18,10 @@
   }
 }
 
+.transitionGroup {
+  display: contents;
+}
+
 .remove {
   display: inline-block;
   opacity: 0;

@@ -35,6 +35,7 @@
   .row {
     background-color: var(--color-background-light);
     transition: background-color 150ms;
+    vertical-align: middle;
 
     &:hover {
       background-color: var(--color-background-accent);
