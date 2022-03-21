@@ -22,4 +22,5 @@
 
 .title {
   margin-left: 10px;
+  user-select: none;
 }
